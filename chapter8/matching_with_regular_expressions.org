@@ -1,0 +1,74 @@
+#+TITLE: Matching with Regular Expressions
+
+* The Binding Operator =~
+#+begin_src perl :results output
+my $some_other = "I dream of betty rubble.";
+if ($some_other =~ /\brub/) {
+  print "Aye, there's the rub.\n";
+}
+#+end_src
+
+#+RESULTS:
+: Aye, there's the rub.
+
+* The Match Variables
+#+begin_src perl :results output
+$_ = "This is some test text, person.";
+if (/\s([a-zA-Z]+),/) {
+  print "The word between a space and comma is: $1\n";
+}
+#+end_src
+
+#+RESULTS:
+: The word between a space and comma is: text
+
+* The Persistence of Captures
+
+* Noncapturing Parentheses
+- Note taken on [2021-07-20 Tue 17:30] \\
+  =?:= right after the opening parenthesis (right before bronto in this case) signifies a noncapture. The value between the parentheses in this case won't be captured.
+#+begin_src perl :results output
+$string = "brontosaurus lunch";
+# $string = "saurus dinner";
+if ($string =~ /(?:bronto)?saurus (lunch|dinner)/) {
+  print "The selected meal is: $1\n";
+}
+#+end_src
+
+#+RESULTS:
+: The selected meal is: lunch
+
+* Named Captures
+#+begin_src perl :results output
+# $names = "Bill or Barry";
+$names = "Jim and Larry";
+
+if ($names =~ /(?<first_name>\w+) (and|or) (?<second_name>\w+)/) {
+  print "first name: $+{first_name}\n";
+  print "second name: $+{second_name}\n";
+}
+#+end_src
+
+#+RESULTS:
+: first name: Jim
+: second name: Larry
+
+* The Automatic Match Variables
+- Note taken on [2021-07-20 Tue 17:48] \\
+  This can cause some slowness. The book has some recommendations on what to use if I need this sort of functionality.
+#+begin_src perl :results output
+$string = "Here is a string, buddy.";
+
+if ($string =~ /\s(\w+),/) {
+  print "The part that matched was '$&'\n";
+  print "Here's what came before the matched section: '$`'\n";
+  print "Here's what came after the matched section: '$''\n";
+}
+#+end_src
+
+#+RESULTS:
+: The part that matched was ' string,'
+: Here's what came before the matched section: 'Here is a'
+: Here's what came after the matched section: ' buddy.'
+
+* Precedence
