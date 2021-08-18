@@ -1,0 +1,44 @@
+#+TITLE: Processing Text With Regular Expressions
+
+* Substitutions with =s///=
+#+begin_src perl :results output
+$_ = 'Smith is a Mathematician';
+s/Smith/Bill/;
+print "$_\n";
+#+end_src
+
+#+RESULTS:
+: Bill is a Mathematician
+
+#+begin_src perl :results output
+$_ = "They're out bowling with Bob tonight.";
+s/with (\w+)/against $1's team/;
+print "$_\n";
+#+end_src
+
+#+RESULTS:
+: They're out bowling against Bob's team tonight.
+
+#+begin_src perl :results output
+$original = 'This is a line';
+if ($original =~ s/line/string/) {
+  print "Substituted text: $original\n";
+} else {
+  print "$original\n";
+}
+#+end_src
+
+#+RESULTS:
+: Substituted text: This is a string
+
+#+begin_src perl :results output
+$name = 'nick';
+# $name = 'NICK';
+
+if ($name =~ s/$name/\L\u$name/) { # capitalize first letter of name only
+  print "Hello, $name. Would you like to play a game?\n";
+}
+#+end_src
+
+#+RESULTS:
+: Hello, Nick. Would you like to play a game?
