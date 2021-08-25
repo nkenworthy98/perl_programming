@@ -1,7 +1,7 @@
 #+TITLE: Matching with Regular Expressions
 
 * The Binding Operator =~
-#+begin_src perl :results output
+#+begin_src perl :results output :exports both
 my $some_other = "I dream of betty rubble.";
 if ($some_other =~ /\brub/) {
   print "Aye, there's the rub.\n";
@@ -12,7 +12,7 @@ if ($some_other =~ /\brub/) {
 : Aye, there's the rub.
 
 * The Match Variables
-#+begin_src perl :results output
+#+begin_src perl :results output :exports both
 $_ = "This is some test text, person.";
 if (/\s([a-zA-Z]+),/) {
   print "The word between a space and comma is: $1\n";
@@ -27,7 +27,7 @@ if (/\s([a-zA-Z]+),/) {
 * Noncapturing Parentheses
 - Note taken on [2021-07-20 Tue 17:30] \\
   =?:= right after the opening parenthesis (right before bronto in this case) signifies a noncapture. The value between the parentheses in this case won't be captured.
-#+begin_src perl :results output
+#+begin_src perl :results output :exports both
 $string = "brontosaurus lunch";
 # $string = "saurus dinner";
 if ($string =~ /(?:bronto)?saurus (lunch|dinner)/) {
@@ -39,7 +39,7 @@ if ($string =~ /(?:bronto)?saurus (lunch|dinner)/) {
 : The selected meal is: lunch
 
 * Named Captures
-#+begin_src perl :results output
+#+begin_src perl :results output :exports both
 # $names = "Bill or Barry";
 $names = "Jim and Larry";
 
@@ -56,7 +56,7 @@ if ($names =~ /(?<first_name>\w+) (and|or) (?<second_name>\w+)/) {
 * The Automatic Match Variables
 - Note taken on [2021-07-20 Tue 17:48] \\
   This can cause some slowness. The book has some recommendations on what to use if I need this sort of functionality.
-#+begin_src perl :results output
+#+begin_src perl :results output :exports both
 $string = "Here is a string, buddy.";
 
 if ($string =~ /\s(\w+),/) {

@@ -1,7 +1,7 @@
 #+TITLE: Processing Text With Regular Expressions
 
 * Substitutions with =s///=
-#+begin_src perl :results output
+#+begin_src perl :results output :exports both
 $_ = 'Smith is a Mathematician';
 s/Smith/Bill/;
 print "$_\n";
@@ -10,7 +10,7 @@ print "$_\n";
 #+RESULTS:
 : Bill is a Mathematician
 
-#+begin_src perl :results output
+#+begin_src perl :results output :exports both
 $_ = "They're out bowling with Bob tonight.";
 s/with (\w+)/against $1's team/;
 print "$_\n";
@@ -19,7 +19,7 @@ print "$_\n";
 #+RESULTS:
 : They're out bowling against Bob's team tonight.
 
-#+begin_src perl :results output
+#+begin_src perl :results output :exports both
 $original = 'This is a line';
 if ($original =~ s/line/string/) {
   print "Substituted text: $original\n";
@@ -31,7 +31,7 @@ if ($original =~ s/line/string/) {
 #+RESULTS:
 : Substituted text: This is a string
 
-#+begin_src perl :results output
+#+begin_src perl :results output :exports both
 $name = 'nick';
 # $name = 'NICK';
 
